@@ -1,0 +1,5 @@
+[
+{ "label": "Automation", "impact": 80 },
+{ "label": "Dashboarding", "impact": 95 },
+{ "label": "Analysis", "impact": 60 }
+]

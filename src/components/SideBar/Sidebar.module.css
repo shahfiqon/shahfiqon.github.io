@@ -1,0 +1,301 @@
+/* ============================================
+   DESKTOP STYLES - Vertical Sidebar (shifts page)
+   ============================================ */
+
+.sidebar {
+  position: sticky;
+  top: 4rem; /* Below Docusaurus navbar */
+  align-self: flex-start;
+  width: 240px;
+  min-height: calc(100vh - 4rem);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  /* padding: 1.5rem; */
+  /* display: flex; */
+  flex-direction: column;
+  gap: 1rem;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  z-index: 10;
+  background: var(--ifm-background-color);
+}
+
+.sidebar.collapsed {
+  width: 64px;
+  padding: 1.5rem 0.5rem;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  min-height: 40px;
+  position: relative;
+}
+
+/* Desktop: Fixed toggle button at top (where brightness toggler is) */
+.desktopToggle {
+  display: none; /* Hidden on mobile */
+  position: fixed;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 1001;
+  background: var(--ifm-background-color);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktopToggle:hover {
+  background: rgba(95, 93, 189, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile toggle button inside sidebar */
+.mobileToggleButton {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.mobileToggleButton:hover {
+  background: rgba(95, 93, 189, 0.08);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--ifm-color-emphasis-700);
+  flex-shrink: 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.5rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 8px;
+  color: var(--ifm-color-emphasis-800);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.sidebar.collapsed .navItem {
+  justify-content: center;
+  padding: 0.75rem;
+  gap: 0;
+}
+
+.sidebar.collapsed .navItem span {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.navItem:hover {
+  background: rgba(95, 93, 189, 0.08);
+  color: var(--ifm-color-primary);
+}
+
+.navItem:hover .navIcon {
+  color: var(--ifm-color-primary);
+}
+
+.followSection {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .followSection {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.helper {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.suggestion {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ============================================
+   MOBILE STYLES - Overlaying Vertical Navigation
+   ============================================ */
+
+/* Backdrop - hidden on desktop, shown on mobile when open */
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Dark mode backdrop */
+[data-theme='dark'] .backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile floating toggle button - hidden on desktop */
+.mobileToggle {
+  display: none;
+  position: fixed;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 1001;
+  background: var(--ifm-background-color);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileToggle:hover {
+  background: rgba(95, 93, 189, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Desktop: Show fixed toggle button */
+@media (min-width: 997px) {
+  .desktopToggle {
+    display: flex;
+  }
+  
+  .mobileToggleButton {
+    display: none;
+  }
+}
+
+@media (max-width: 996px) {
+  /* Hide desktop toggle on mobile */
+  .desktopToggle {
+    display: none;
+  }
+  
+  /* Show mobile toggle button inside sidebar */
+  .mobileToggleButton {
+    display: flex;
+  }
+
+  /* Show backdrop on mobile when sidebar is open */
+  .backdrop {
+    display: block;
+  }
+
+  /* Mobile: Sidebar as fixed overlay */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 85vw;
+    background: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    z-index: 1000;
+    
+    /* Hidden by default, slides in when open */
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+
+  /* Dark mode sidebar */
+  [data-theme='dark'] .sidebar {
+    background: var(--ifm-background-color);
+  }
+  
+  /* Mobile: When open (not collapsed), slide in from left */
+  .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+  
+  /* Mobile: When collapsed, keep it hidden */
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+    width: 280px;
+    padding: 1.5rem;
+  }
+  
+  /* Mobile: Show toggle button at top */
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  /* Show mobile toggle button when sidebar is closed */
+  .mobileToggle {
+    display: flex;
+  }
+}

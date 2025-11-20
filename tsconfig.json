@@ -1,0 +1,14 @@
+{
+    "extends": "@docusaurus/tsconfig",
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "jsxImportSource": "react",
+      "module": "esnext",
+      "allowJs": true,
+      "checkJs": false,
+      "baseUrl": ".",
+      "paths": { "@site/*": ["./*"] },
+      "typeRoots": ["src/types", "node_modules/@types"]
+    },
+    "include": ["src", "docusaurus.config.js", "sidebars.js"]
+  }
