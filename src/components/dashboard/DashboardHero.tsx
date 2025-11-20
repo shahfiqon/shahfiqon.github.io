@@ -2,6 +2,7 @@ import styles from "./DashboardHero.module.css";
 
 export default function DashboardHero({ title, subtitle, ctaText, ctaLink }) {
   return (
+    <>
     <section className={styles.hero}>
       <div>
         <p className={styles.kicker}> Portfolio Dashboards</p>
@@ -15,5 +16,6 @@ export default function DashboardHero({ title, subtitle, ctaText, ctaLink }) {
         <span />
       </div>
     </section>
+    </>
   );
 }
