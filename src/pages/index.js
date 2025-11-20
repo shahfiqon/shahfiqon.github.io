@@ -7,7 +7,7 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 import styles from "./index.module.css";
 //for nav bar
-import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebar from "../components/SideBar/Sidebar";
 
 //for dashboard
 import DashboardHero from "../components/dashboard/DashboardHero";
