@@ -88,7 +88,7 @@ const config = {
         { name: "twitter:card", content: "summary_large_image" },
       ],
       colorMode: {
-        defaultMode: "light",
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },

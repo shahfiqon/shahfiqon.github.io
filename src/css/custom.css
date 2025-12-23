@@ -318,12 +318,51 @@
   outline-offset: 2px;
 }
 
-/* Hide color mode toggle for cleaner navbar */
+/* Color mode toggle styling */
 .navbar .colorModeToggle_DEke,
 .navbar__items .navbar__item button[class*="toggle"],
 .navbar__items .navbar__item button[title*="Switch"],
 [class*="colorModeToggle"] {
-  display: none;
+  /* display: none; */ /* Removed - showing color mode toggle */
+}
+
+/* Improve color mode toggle visibility */
+button[class*="colorModeToggle"],
+button[class*="toggle"][title*="Switch"] {
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  background-color: var(--ifm-color-emphasis-100) !important;
+  transition: all 0.2s ease !important;
+}
+
+button[class*="colorModeToggle"]:hover,
+button[class*="toggle"][title*="Switch"]:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  border-color: var(--ifm-color-emphasis-400) !important;
+}
+
+/* Light mode specific visibility */
+[data-theme="light"] button[class*="colorModeToggle"],
+[data-theme="light"] button[class*="toggle"][title*="Switch"] {
+  border-color: #d1d5db !important;
+  background-color: #f3f4f6 !important;
+}
+
+[data-theme="light"] button[class*="colorModeToggle"]:hover,
+[data-theme="light"] button[class*="toggle"][title*="Switch"]:hover {
+  background-color: #e5e7eb !important;
+  border-color: #9ca3af !important;
+}
+
+/* Ensure icon is visible */
+button[class*="colorModeToggle"] svg,
+button[class*="toggle"][title*="Switch"] svg {
+  color: var(--ifm-font-color-base) !important;
+  opacity: 0.8;
+}
+
+button[class*="colorModeToggle"]:hover svg,
+button[class*="toggle"][title*="Switch"]:hover svg {
+  opacity: 1;
 }
 
 /* Mobile responsive */
