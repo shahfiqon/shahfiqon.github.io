@@ -12,7 +12,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 const config = {
   title: "Phoenix | Senior Software Engineer",
   tagline: "Building scalable systems and exceptional user experiences",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.svg",
 
   deploymentBranch: "gh-pages",
 
@@ -71,7 +71,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+      image: "img/social-card.svg",
       metadata: [
         {
           name: "description",

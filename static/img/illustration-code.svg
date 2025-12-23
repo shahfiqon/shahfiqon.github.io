@@ -1,0 +1,120 @@
+<svg width="1088" height="688" viewBox="0 0 1088 688" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="codeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="codeGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background elements -->
+  <ellipse cx="800" cy="600" rx="250" ry="80" fill="#f0f0f0" opacity="0.5"/>
+  
+  <!-- Large code editor window -->
+  <g transform="translate(150, 100)">
+    <!-- Window -->
+    <rect x="0" y="0" width="700" height="450" rx="10" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+    
+    <!-- Window header -->
+    <rect x="0" y="0" width="700" height="40" rx="10" fill="#1a202c"/>
+    <rect x="0" y="30" width="700" height="10" fill="#1a202c"/>
+    
+    <!-- Window dots -->
+    <circle cx="20" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="40" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="60" cy="20" r="6" fill="#27c93f"/>
+    
+    <!-- Tab -->
+    <rect x="100" y="8" width="120" height="28" rx="5" fill="#2d3748"/>
+    <text x="160" y="28" font-family="monospace" font-size="14" fill="#a0aec0" text-anchor="middle">index.tsx</text>
+    
+    <!-- Code lines -->
+    <g transform="translate(20, 60)">
+      <!-- Line 1 -->
+      <text x="0" y="20" font-family="monospace" font-size="14" fill="#68d391">import</text>
+      <text x="80" y="20" font-family="monospace" font-size="14" fill="#a0aec0">React from</text>
+      <text x="180" y="20" font-family="monospace" font-size="14" fill="#f6ad55">'react'</text>
+      
+      <!-- Line 2 -->
+      <text x="0" y="50" font-family="monospace" font-size="14" fill="#68d391">import</text>
+      <text x="80" y="50" font-family="monospace" font-size="14" fill="#a0aec0">{ useState } from</text>
+      <text x="260" y="50" font-family="monospace" font-size="14" fill="#f6ad55">'react'</text>
+      
+      <!-- Line 4 -->
+      <text x="0" y="95" font-family="monospace" font-size="14" fill="#fc8181">const</text>
+      <text x="70" y="95" font-family="monospace" font-size="14" fill="#90cdf4">App</text>
+      <text x="120" y="95" font-family="monospace" font-size="14" fill="#a0aec0">= () => {</text>
+      
+      <!-- Line 5 -->
+      <text x="20" y="125" font-family="monospace" font-size="14" fill="#fc8181">const</text>
+      <text x="90" y="125" font-family="monospace" font-size="14" fill="#a0aec0">[count, setCount] =</text>
+      <text x="300" y="125" font-family="monospace" font-size="14" fill="#90cdf4">useState</text>
+      <text x="385" y="125" font-family="monospace" font-size="14" fill="#a0aec0">(</text>
+      <text x="395" y="125" font-family="monospace" font-size="14" fill="#f6ad55">0</text>
+      <text x="410" y="125" font-family="monospace" font-size="14" fill="#a0aec0">)</text>
+      
+      <!-- Line 7 -->
+      <text x="20" y="170" font-family="monospace" font-size="14" fill="#fc8181">return</text>
+      <text x="90" y="170" font-family="monospace" font-size="14" fill="#a0aec0">(</text>
+      
+      <!-- Line 8 -->
+      <text x="40" y="200" font-family="monospace" font-size="14" fill="#a0aec0">&lt;</text>
+      <text x="52" y="200" font-family="monospace" font-size="14" fill="#68d391">div</text>
+      <text x="85" y="200" font-family="monospace" font-size="14" fill="#90cdf4">className</text>
+      <text x="175" y="200" font-family="monospace" font-size="14" fill="#a0aec0">=</text>
+      <text x="187" y="200" font-family="monospace" font-size="14" fill="#f6ad55">"container"</text>
+      <text x="280" y="200" font-family="monospace" font-size="14" fill="#a0aec0">&gt;</text>
+      
+      <!-- Line 9 -->
+      <text x="60" y="230" font-family="monospace" font-size="14" fill="#a0aec0">&lt;</text>
+      <text x="72" y="230" font-family="monospace" font-size="14" fill="#68d391">h1</text>
+      <text x="97" y="230" font-family="monospace" font-size="14" fill="#a0aec0">&gt;Count: {count}&lt;/</text>
+      <text x="280" y="230" font-family="monospace" font-size="14" fill="#68d391">h1</text>
+      <text x="305" y="230" font-family="monospace" font-size="14" fill="#a0aec0">&gt;</text>
+      
+      <!-- Line 10 -->
+      <text x="40" y="260" font-family="monospace" font-size="14" fill="#a0aec0">&lt;/</text>
+      <text x="60" y="260" font-family="monospace" font-size="14" fill="#68d391">div</text>
+      <text x="93" y="260" font-family="monospace" font-size="14" fill="#a0aec0">&gt;</text>
+      
+      <!-- Line 11 -->
+      <text x="20" y="290" font-family="monospace" font-size="14" fill="#a0aec0">)</text>
+      
+      <!-- Line 12 -->
+      <text x="0" y="320" font-family="monospace" font-size="14" fill="#a0aec0">}</text>
+    </g>
+  </g>
+  
+  <!-- Floating elements -->
+  <g opacity="0.8">
+    <!-- Code bracket -->
+    <text x="900" y="200" font-family="monospace" font-size="120" fill="url(#codeGrad1)" opacity="0.3">{</text>
+    <text x="920" y="520" font-family="monospace" font-size="120" fill="url(#codeGrad1)" opacity="0.3">}</text>
+  </g>
+  
+  <!-- Person illustration -->
+  <g transform="translate(750, 350)">
+    <!-- Head -->
+    <circle cx="50" cy="20" r="25" fill="#fcc9b5"/>
+    
+    <!-- Body -->
+    <ellipse cx="50" cy="80" rx="35" ry="45" fill="url(#codeGrad2)"/>
+    
+    <!-- Arms -->
+    <ellipse cx="20" cy="70" rx="12" ry="35" fill="url(#codeGrad2)" transform="rotate(-20 20 70)"/>
+    <ellipse cx="80" cy="70" rx="12" ry="35" fill="url(#codeGrad2)" transform="rotate(20 80 70)"/>
+    
+    <!-- Legs -->
+    <ellipse cx="35" cy="135" rx="12" ry="30" fill="#4a5568"/>
+    <ellipse cx="65" cy="135" rx="12" ry="30" fill="#4a5568"/>
+  </g>
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="500" r="30" fill="#68d391" opacity="0.3"/>
+  <circle cx="950" cy="100" r="40" fill="#90cdf4" opacity="0.3"/>
+  <circle cx="200" cy="150" r="20" fill="#f6ad55" opacity="0.3"/>
+</svg>
+
