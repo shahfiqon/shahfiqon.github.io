@@ -19,13 +19,13 @@ const socialLinks: SocialLink[] = [
   {
     name: 'LinkedIn',
     icon: <FiLinkedin size={22} />,
-    url: 'https://linkedin.com/in/phoenix',
+    url: 'https://www.linkedin.com/in/jane-zhang-840033397/',
     color: '#0077b5',
   },
   {
     name: 'Email',
     icon: <FiMail size={22} />,
-    url: 'mailto:phoenix@example.com',
+    url: 'mailto:jane1907476@gmail.com',
     color: '#ea4335',
   },
 ];

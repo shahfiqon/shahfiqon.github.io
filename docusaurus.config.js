@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Phoenix | Senior Software Engineer",
+  title: "Jane Zhang | Senior Software Engineer",
   tagline: "Building scalable systems and exceptional user experiences",
   favicon: "img/favicon.svg",
 
@@ -36,6 +36,12 @@ const config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
+  },
+
+  themes: ["@docusaurus/theme-mermaid"],
+
+  markdown: {
+    mermaid: true,
   },
 
   presets: [
@@ -80,7 +86,7 @@ const config = {
         },
         { name: "keywords", content: "software engineer, portfolio, react, typescript, frontend, backend" },
         { property: "og:type", content: "website" },
-        { property: "og:title", content: "Phoenix | Senior Software Engineer Portfolio" },
+        { property: "og:title", content: "Jane Zhang | Senior Software Engineer Portfolio" },
         {
           property: "og:description",
           content: "Building scalable systems and exceptional user experiences",
@@ -93,10 +99,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: "Phoenix",
         logo: {
           alt: "Phoenix Logo",
-          src: "img/logo.svg",
+          src: "/img/logo.svg",
         },
         items: [
           {
@@ -121,7 +126,7 @@ const config = {
             position: "right",
           },
           {
-            label: "Achievements",
+            label: "Blogs",
             to: "/blog",
             position: "right",
           },
@@ -165,7 +170,7 @@ const config = {
               },
               {
                 label: "LinkedIn",
-                href: "https://linkedin.com/in/phoenix",
+                href: "https://www.linkedin.com/in/jane-zhang-840033397/",
               },
               {
                 label: "Twitter",

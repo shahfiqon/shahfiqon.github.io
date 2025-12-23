@@ -14,8 +14,8 @@ const contactMethods = [
   {
     icon: <FiMail size={24} />,
     title: "Email",
-    value: "phoenix@example.com",
-    link: "mailto:phoenix@example.com",
+    value: "jane1907476@gmail.com",
+    link: "mailto:jane1907476@gmail.com",
     color: "#3b82f6",
   },
   {
@@ -28,17 +28,10 @@ const contactMethods = [
   {
     icon: <FiLinkedin size={24} />,
     title: "LinkedIn",
-    value: "/in/phoenix",
-    link: "https://linkedin.com/in/phoenix",
+    value: "/in/jane-zhang-840033397s",
+    link: "https://www.linkedin.com/in/jane-zhang-840033397/",
     color: "#0077b5",
-  },
-  {
-    icon: <FiTwitter size={24} />,
-    title: "Twitter",
-    value: "@phoenix",
-    link: "https://twitter.com/phoenix",
-    color: "#1da1f2",
-  },
+  }
 ];
 
 export default function Contact() {
@@ -314,7 +307,7 @@ export default function Contact() {
               Book a time that works best for you to discuss your project or
               opportunity.
             </p>
-            <a
+            {/* <a
               href="https://calendly.com/phoenix"
               target="_blank"
               rel="noopener noreferrer"
@@ -334,7 +327,7 @@ export default function Contact() {
             >
               <FiCalendar size={16} />
               Book a Meeting
-            </a>
+            </a> */}
           </div>
         </motion.div>
 

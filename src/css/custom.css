@@ -175,7 +175,9 @@
 }
 
 .navbar__logo {
-  display: none; /* Hide default logo for cleaner look */
+  margin-right: 0.5rem;
+  height: 32px;
+  width: auto;
 }
 
 .navbar__title {

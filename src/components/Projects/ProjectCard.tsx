@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink, FiFileText } from "react-icons/fi";
+import { useHistory } from "@docusaurus/router";
 
 interface ProjectImpact {
   [key: string]: string;
@@ -40,6 +41,12 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const history = useHistory();
+
+  const handleCardClick = () => {
+    // Navigate to project detail page
+    history.push(`/project?id=${project.id}`);
+  };
 
   return (
     <motion.div
@@ -58,7 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         position: "relative",
         cursor: "pointer",
       }}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={handleCardClick}
     >
       {/* Featured Badge */}
       {project.featured && (

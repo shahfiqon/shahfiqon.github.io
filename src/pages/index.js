@@ -26,10 +26,10 @@ export default function Home() {
     >
       <Head>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Phoenix | Senior Software Engineer Portfolio" />
+        <meta property="og:title" content="Jane Zhang | Senior Software Engineer Portfolio" />
         <meta
           property="og:description"
-          content="8+ years of experience building scalable systems and exceptional user experiences"
+          content="10+ years of experience building scalable systems and exceptional user experiences"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://shahfiqon.github.io/" />

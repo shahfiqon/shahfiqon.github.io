@@ -17,3 +17,44 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+ai:
+  label: AI
+  permalink: /ai
+  description: Artificial Intelligence tag
+
+llm:
+  label: LLM
+  permalink: /llm
+  description: Large Language Model tag
+
+full-stack:
+  label: Full-Stack
+  permalink: /full-stack
+  description: Full-Stack Engineering tag
+
+architecture:
+  label: Architecture
+  permalink: /architecture
+  description: Architecture tag
+
+nextjs:
+  label: Next.js
+  permalink: /nextjs
+  description: Next.js tag
+
+fastapi:
+  label: FastAPI
+  permalink: /fastapi
+  description: FastAPI tag
+
+python:
+  label: Python
+  permalink: /python
+  description: Python tag
+
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: TypeScript tag
+
