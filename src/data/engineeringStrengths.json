@@ -1,0 +1,53 @@
+{
+  "strengths": [
+    {
+      "area": "Backend Development",
+      "score": 90,
+      "icon": "FiServer",
+      "description": "Node.js, Python, REST APIs, GraphQL, Microservices"
+    },
+    {
+      "area": "Frontend Development",
+      "score": 85,
+      "icon": "FiLayout",
+      "description": "React, TypeScript, Next.js, Vue.js, Modern UI/UX"
+    },
+    {
+      "area": "DevOps & Infrastructure",
+      "score": 75,
+      "icon": "FiCloud",
+      "description": "Docker, Kubernetes, CI/CD, AWS, Cloud Architecture"
+    },
+    {
+      "area": "Database Design",
+      "score": 80,
+      "icon": "FiDatabase",
+      "description": "PostgreSQL, MongoDB, Redis, Query Optimization"
+    },
+    {
+      "area": "API Development",
+      "score": 88,
+      "icon": "FiCode",
+      "description": "RESTful APIs, GraphQL, WebSockets, API Design"
+    },
+    {
+      "area": "System Architecture",
+      "score": 78,
+      "icon": "FiCpu",
+      "description": "Scalability, Performance, Design Patterns, Microservices"
+    },
+    {
+      "area": "Technical Documentation",
+      "score": 82,
+      "icon": "FiFileText",
+      "description": "API Docs, Architecture Diagrams, Code Comments"
+    },
+    {
+      "area": "Code Review & Mentoring",
+      "score": 85,
+      "icon": "FiUsers",
+      "description": "Best Practices, Team Leadership, Knowledge Sharing"
+    }
+  ]
+}
+

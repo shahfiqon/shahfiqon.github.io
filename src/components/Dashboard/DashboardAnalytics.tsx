@@ -6,6 +6,7 @@ import SkillsHeatmap from "../Charts/SkillsHeatmap";
 import CareerTimeline from "../Charts/CareerTimeline";
 import SkillsShowcase from "../Skills/SkillsShowcase";
 import GitHubContributions from "../GitHub/GitHubContributions";
+import EngineeringStrengthsChart from "../Charts/EngineeringStrengthsChart";
 import skillsData from "../../data/skillsEnhanced.json";
 
 export default function DashboardAnalytics() {
@@ -35,6 +36,11 @@ export default function DashboardAnalytics() {
         <ExperienceDomainChart />
         <SoftskillCard />
       </div>
+
+      {/* Engineering Strengths Chart - Full Width */}
+      <section style={{ marginBottom: "40px" }}>
+        <EngineeringStrengthsChart />
+      </section>
 
       {/* Skills Showcase - Full Width */}
       <section style={{ marginBottom: "40px" }}>

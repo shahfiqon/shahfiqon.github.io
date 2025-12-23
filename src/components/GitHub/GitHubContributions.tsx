@@ -7,14 +7,16 @@ interface GitHubContributionsProps {
   username: string;
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
 export default function GitHubContributions({ username }: GitHubContributionsProps) {
   const [data, setData] = useState<GitHubContributionsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
+
+  // Generate year options (current year back to 2015 or when user joined GitHub)
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 2014 }, (_, i) => currentYear - i);
 
   useEffect(() => {
     // Only run on client side
@@ -40,7 +42,7 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
     }
 
     loadContributions();
-  }, [username, isMounted]);
+  }, [username, isMounted, selectedYear]);
 
   if (loading) {
     return (
@@ -63,30 +65,32 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
     );
   }
 
-  // Get month labels for the graph
-  const monthLabels: { month: string; weekIndex: number }[] = [];
-  data.weeks.forEach((week, index) => {
-    if (week.days.length > 0) {
-      const date = new Date(week.days[0].date);
-      const month = MONTHS[date.getMonth()];
-      
-      // Only add label if it's the first week of the month or first week overall
-      if (index === 0 || date.getDate() <= 7) {
-        monthLabels.push({ month, weekIndex: index });
-      }
-    }
-  });
-
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.titleSection}>
-          <FiGithub className={styles.githubIcon} />
-          <div>
-            <h2 className={styles.title}>GitHub Activity</h2>
-            <p className={styles.subtitle}>
-              Contribution history for <a href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">@{username}</a>
-            </p>
+        <div className={styles.headerTop}>
+          <div className={styles.titleSection}>
+            <FiGithub className={styles.githubIcon} />
+            <div>
+              <h2 className={styles.title}>GitHub Activity</h2>
+              <p className={styles.subtitle}>
+                Contribution history for <a href={`https://github.com/${username}`} target="_blank" rel="noopener noreferrer">@{username}</a>
+              </p>
+            </div>
+          </div>
+          
+          <div className={styles.yearSelector}>
+            <label htmlFor="year-select" className={styles.yearLabel}>Year:</label>
+            <select 
+              id="year-select"
+              className={styles.yearSelect}
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+            >
+              {years.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
           </div>
         </div>
         
@@ -125,28 +129,6 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
 
       <div className={styles.graphContainer}>
         <div className={styles.graph}>
-          {/* Month labels */}
-          <div className={styles.monthLabels}>
-            {monthLabels.map((label, index) => (
-              <span
-                key={index}
-                className={styles.monthLabel}
-                style={{ gridColumn: label.weekIndex + 2 }}
-              >
-                {label.month}
-              </span>
-            ))}
-          </div>
-
-          {/* Day labels */}
-          <div className={styles.dayLabels}>
-            {['Mon', 'Wed', 'Fri'].map((day, index) => (
-              <span key={day} className={styles.dayLabel} style={{ gridRow: index * 2 + 2 }}>
-                {day}
-              </span>
-            ))}
-          </div>
-
           {/* Contribution grid */}
           <div className={styles.grid}>
             {data.weeks.map((week, weekIndex) => (
