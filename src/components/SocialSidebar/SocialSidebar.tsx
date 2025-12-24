@@ -1,36 +1,9 @@
 import React from 'react';
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import styles from './SocialSidebar.module.css';
-
-interface SocialLink {
-  name: string;
-  icon: React.ReactNode;
-  url: string;
-  color: string;
-}
-
-const socialLinks: SocialLink[] = [
-  {
-    name: 'GitHub',
-    icon: <FiGithub size={22} />,
-    url: 'https://github.com/shahfiqon',
-    color: '#333',
-  },
-  {
-    name: 'LinkedIn',
-    icon: <FiLinkedin size={22} />,
-    url: 'https://www.linkedin.com/in/jane-zhang-840033397/',
-    color: '#0077b5',
-  },
-  {
-    name: 'Email',
-    icon: <FiMail size={22} />,
-    url: 'mailto:jane1907476@gmail.com',
-    color: '#ea4335',
-  },
-];
+import { getSocialLinks } from '../../config/configHelpers';
 
 export default function SocialSidebar() {
+  const socialLinks = getSocialLinks();
   return (
     <div className={styles.sidebar}>
       <div className={styles.socialLinks}>

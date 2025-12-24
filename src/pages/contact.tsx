@@ -2,39 +2,16 @@ import React from "react";
 import Layout from "@theme/Layout";
 import { motion } from "framer-motion";
 import {
-  FiMail,
-  FiGithub,
-  FiLinkedin,
-  FiTwitter,
   FiCalendar,
   FiMapPin,
 } from "react-icons/fi";
-
-const contactMethods = [
-  {
-    icon: <FiMail size={24} />,
-    title: "Email",
-    value: "jane1907476@gmail.com",
-    link: "mailto:jane1907476@gmail.com",
-    color: "#3b82f6",
-  },
-  {
-    icon: <FiGithub size={24} />,
-    title: "GitHub",
-    value: "@shahfiqon",
-    link: "https://github.com/shahfiqon",
-    color: "#333",
-  },
-  {
-    icon: <FiLinkedin size={24} />,
-    title: "LinkedIn",
-    value: "/in/jane-zhang-840033397s",
-    link: "https://www.linkedin.com/in/jane-zhang-840033397/",
-    color: "#0077b5",
-  }
-];
+import { getPersonalInfo, getPageContent, getContactMethods, getAvailability } from "../config/configHelpers";
 
 export default function Contact() {
+  const personal = getPersonalInfo();
+  const pageContent = getPageContent('contact');
+  const contactMethods = getContactMethods();
+  const availability = getAvailability();
   return (
     <Layout
       title="Contact"
@@ -69,7 +46,7 @@ export default function Contact() {
               backgroundClip: "text",
             }}
           >
-            Let's Connect
+            {pageContent.hero.title}
           </h1>
           <p
             style={{
@@ -80,8 +57,7 @@ export default function Contact() {
               lineHeight: "1.6",
             }}
           >
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your vision.
+            {pageContent.hero.subtitle}
           </p>
 
           {/* Availability Badge */}
@@ -111,7 +87,7 @@ export default function Contact() {
                 animation: "pulse 2s infinite",
               }}
             />
-            Available for opportunities
+            {availability.text}
           </motion.div>
         </motion.div>
 
@@ -238,7 +214,7 @@ export default function Contact() {
                   color: "var(--ifm-font-color-base)",
                 }}
               >
-                Location
+                {pageContent.location.title}
               </h3>
             </div>
             <p
@@ -249,7 +225,7 @@ export default function Contact() {
                 lineHeight: "1.6",
               }}
             >
-              Based in [Your City], open to remote opportunities worldwide.
+              {pageContent.location.text}
             </p>
           </div>
 
@@ -293,7 +269,7 @@ export default function Contact() {
                   color: "var(--ifm-font-color-base)",
                 }}
               >
-                Schedule a Call
+                {pageContent.schedule.title}
               </h3>
             </div>
             <p
@@ -304,8 +280,7 @@ export default function Contact() {
                 lineHeight: "1.6",
               }}
             >
-              Book a time that works best for you to discuss your project or
-              opportunity.
+              {pageContent.schedule.text}
             </p>
             {/* <a
               href="https://calendly.com/phoenix"
@@ -350,10 +325,8 @@ export default function Contact() {
               fontSize: "14px",
               color: "var(--ifm-color-emphasis-700)",
             }}
-          >
-            📬 I typically respond within <strong>24-48 hours</strong>. For
-            urgent matters, please mention "urgent" in your subject line.
-          </p>
+            dangerouslySetInnerHTML={{ __html: `📬 ${pageContent.hero.responseNote}` }}
+          />
         </motion.div>
       </main>
 

@@ -1,12 +1,16 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import { motion } from "framer-motion";
+import { getPersonalInfo, getPageContent, getWhatIDoItems } from "../config/configHelpers";
 
 export default function About() {
+  const personal = getPersonalInfo();
+  const pageContent = getPageContent('about');
+  const whatIDoItems = getWhatIDoItems();
   return (
     <Layout
       title="About"
-      description="Learn more about Phoenix - Senior Software Engineer"
+      description={`Learn more about ${personal.name} - ${personal.title}`}
     >
       <main
         style={{
@@ -37,7 +41,7 @@ export default function About() {
               backgroundClip: "text",
             }}
           >
-            About Me
+            {pageContent.hero.title}
           </h1>
           <p
             style={{
@@ -48,7 +52,7 @@ export default function About() {
               lineHeight: "1.6",
             }}
           >
-            Passionate about building scalable systems and exceptional user experiences
+            {pageContent.hero.subtitle}
           </p>
         </motion.div>
 
@@ -81,43 +85,21 @@ export default function About() {
                 color: "var(--ifm-font-color-base)",
               }}
             >
-              Senior Software Engineer
+              {personal.title}
             </h2>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.8",
-                color: "var(--ifm-color-emphasis-700)",
-                marginBottom: "16px",
-              }}
-            >
-              With over 5+ years of experience in software engineering, I specialize in building 
-              scalable web applications and systems architecture. My expertise spans across frontend 
-              technologies like React, TypeScript, and modern frameworks, as well as backend development 
-              with Node.js, Python, and cloud infrastructure.
-            </p>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.8",
-                color: "var(--ifm-color-emphasis-700)",
-                marginBottom: "16px",
-              }}
-            >
-              I'm passionate about creating intuitive user interfaces, optimizing performance, and 
-              implementing best practices in software development. I believe in writing clean, 
-              maintainable code and fostering collaborative team environments.
-            </p>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.8",
-                color: "var(--ifm-color-emphasis-700)",
-              }}
-            >
-              When I'm not coding, you can find me exploring new technologies, contributing to 
-              open-source projects, or sharing knowledge through technical writing and mentoring.
-            </p>
+            {pageContent.bio.paragraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                style={{
+                  fontSize: "16px",
+                  lineHeight: "1.8",
+                  color: "var(--ifm-color-emphasis-700)",
+                  marginBottom: index < pageContent.bio.paragraphs.length - 1 ? "16px" : "0",
+                }}
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
 
           {/* Skills Overview */}
@@ -147,24 +129,7 @@ export default function About() {
                 gap: "24px",
               }}
             >
-              {[
-                {
-                  title: "Frontend Development",
-                  description: "Building responsive, performant web applications with React, TypeScript, and modern CSS",
-                },
-                {
-                  title: "Backend Development",
-                  description: "Designing and implementing scalable APIs, microservices, and server-side logic",
-                },
-                {
-                  title: "System Design",
-                  description: "Architecting robust, scalable systems with focus on performance and reliability",
-                },
-                {
-                  title: "DevOps & Cloud",
-                  description: "Managing CI/CD pipelines, containerization, and cloud infrastructure deployment",
-                },
-              ].map((item, index) => (
+              {whatIDoItems.map((item, index) => (
                 <div
                   key={index}
                   style={{

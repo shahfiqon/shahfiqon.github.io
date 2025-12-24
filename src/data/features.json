@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "title": "Easy to Use",
+      "svg": "undraw_docusaurus_mountain.svg",
+      "description": "Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly."
+    },
+    {
+      "title": "Focus on What Matters",
+      "svg": "undraw_docusaurus_tree.svg",
+      "description": "Docusaurus lets you focus on your docs, and we'll do the chores. Go ahead and move your docs into the docs directory."
+    },
+    {
+      "title": "Powered by React",
+      "svg": "undraw_docusaurus_react.svg",
+      "description": "Extend or customize your website layout by reusing React. Docusaurus can be extended while reusing the same header and footer."
+    }
+  ]
+}
+

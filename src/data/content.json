@@ -1,0 +1,55 @@
+{
+  "about": {
+    "hero": {
+      "title": "About Me",
+      "subtitle": "Passionate about building scalable systems and exceptional user experiences"
+    },
+    "bio": {
+      "paragraphs": [
+        "With over 5+ years of experience in software engineering, I specialize in building scalable web applications and systems architecture. My expertise spans across frontend technologies like React, TypeScript, and modern frameworks, as well as backend development with Node.js, Python, and cloud infrastructure.",
+        "I'm passionate about creating intuitive user interfaces, optimizing performance, and implementing best practices in software development. I believe in writing clean, maintainable code and fostering collaborative team environments.",
+        "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge through technical writing and mentoring."
+      ]
+    },
+    "whatIDo": [
+      {
+        "title": "Frontend Development",
+        "description": "Building responsive, performant web applications with React, TypeScript, and modern CSS"
+      },
+      {
+        "title": "Backend Development",
+        "description": "Designing and implementing scalable APIs, microservices, and server-side logic"
+      },
+      {
+        "title": "System Design",
+        "description": "Architecting robust, scalable systems with focus on performance and reliability"
+      },
+      {
+        "title": "DevOps & Cloud",
+        "description": "Managing CI/CD pipelines, containerization, and cloud infrastructure deployment"
+      }
+    ]
+  },
+  "contact": {
+    "hero": {
+      "title": "Let's Connect",
+      "subtitle": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
+      "responseNote": "I typically respond within <strong>24-48 hours</strong>. For urgent matters, please mention \"urgent\" in your subject line."
+    },
+    "location": {
+      "title": "Location",
+      "text": "Based in [Your City], open to remote opportunities worldwide."
+    },
+    "schedule": {
+      "title": "Schedule a Call",
+      "text": "Book a time that works best for you to discuss your project or opportunity."
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "Jane Zhang | Senior Software Engineer Portfolio",
+      "description": "10+ years of experience building scalable systems and exceptional user experiences"
+    }
+  }
+}
+

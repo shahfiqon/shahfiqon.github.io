@@ -1,0 +1,23 @@
+{
+  "name": "Jane Zhang",
+  "title": "Senior Software Engineer",
+  "tagline": "Building scalable systems and exceptional user experiences",
+  "email": "jane1907476@gmail.com",
+  "location": "[Your City]",
+  "github": "shahfiqon",
+  "linkedin": "jane-zhang-840033397",
+  "twitter": "phoenix",
+  "availability": {
+    "status": "available",
+    "text": "Available for opportunities",
+    "responseTime": "24-48 hours"
+  },
+  "yearsExperience": "8+",
+  "urls": {
+    "site": "https://shahfiqon.github.io",
+    "github": "https://github.com/shahfiqon",
+    "linkedin": "https://www.linkedin.com/in/jane-zhang-840033397/",
+    "twitter": "https://twitter.com/phoenix"
+  }
+}
+

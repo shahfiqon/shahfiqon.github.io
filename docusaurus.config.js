@@ -5,27 +5,30 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import { themes as prismThemes } from "prism-react-renderer";
+import portfolioConfig from "./src/config/portfolio.config.ts";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const { siteConfig, navbarItems, footerLinks } = portfolioConfig;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Jane Zhang | Senior Software Engineer",
-  tagline: "Building scalable systems and exceptional user experiences",
-  favicon: "img/favicon.svg",
+  title: siteConfig.title,
+  tagline: siteConfig.tagline,
+  favicon: siteConfig.favicon,
 
   deploymentBranch: "gh-pages",
 
   // Set the production url of your site here
-  url: "https://shahfiqon.github.io",
+  url: siteConfig.url,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: siteConfig.baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "shahfiqon", // Usually your GitHub org/user name.
-  projectName: "shahfiqon.github.io", // Usually your repo name.
+  organizationName: siteConfig.organizationName, // Usually your GitHub org/user name.
+  projectName: siteConfig.projectName, // Usually your repo name.
   trailingSlash: false,
 
   onBrokenLinks: "throw",
@@ -78,21 +81,7 @@ const config = {
     ({
       // Replace with your project's social card
       image: "img/social-card.svg",
-      metadata: [
-        {
-          name: "description",
-          content:
-            "Senior Software Engineer portfolio showcasing experience in frontend, backend, and system design",
-        },
-        { name: "keywords", content: "software engineer, portfolio, react, typescript, frontend, backend" },
-        { property: "og:type", content: "website" },
-        { property: "og:title", content: "Jane Zhang | Senior Software Engineer Portfolio" },
-        {
-          property: "og:description",
-          content: "Building scalable systems and exceptional user experiences",
-        },
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
+      metadata: siteConfig.metadata,
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -104,32 +93,7 @@ const config = {
           src: "/img/logo.svg",
         },
         items: [
-          {
-            label: "Home",
-            to: "/",
-            position: "right",
-            activeBaseRegex: "^/$",
-          },
-          {
-            label: "About",
-            to: "/about",
-            position: "right",
-          },
-          {
-            label: "Experience",
-            to: "/experience",
-            position: "right",
-          },
-          {
-            label: "Projects",
-            to: "/projects",
-            position: "right",
-          },
-          {
-            label: "Blogs",
-            to: "/blog",
-            position: "right",
-          },
+          ...navbarItems,
           {
             type: "html",
             position: "right",
@@ -139,60 +103,8 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [
-          {
-            title: "Navigate",
-            items: [
-              {
-                label: "Home",
-                to: "/",
-              },
-              {
-                label: "Projects",
-                to: "/projects",
-              },
-              {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
-                label: "Contact",
-                to: "/contact",
-              },
-            ],
-          },
-          {
-            title: "Connect",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/shahfiqon",
-              },
-              {
-                label: "LinkedIn",
-                href: "https://www.linkedin.com/in/jane-zhang-840033397/",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/phoenix",
-              },
-            ],
-          },
-          {
-            title: "Resources",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/shahfiqon",
-              },
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com",
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Phoenix. Built with Docusaurus.`,
+        links: footerLinks,
+        copyright: siteConfig.copyright,
       },
       prism: {
         theme: prismThemes.github,

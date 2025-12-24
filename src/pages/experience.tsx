@@ -1,43 +1,11 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import { motion } from "framer-motion";
+import { getExperiencePageData } from "../config/configHelpers";
 
 export default function Experience() {
-  const experiences = [
-    {
-      role: "Senior Software Engineer",
-      company: "Tech Company",
-      period: "2021 - Present",
-      description: "Leading frontend architecture and development of large-scale web applications. Mentoring junior developers and establishing best practices.",
-      achievements: [
-        "Improved application performance by 40% through optimization",
-        "Led migration to TypeScript and modern React patterns",
-        "Established CI/CD pipeline reducing deployment time by 60%",
-      ],
-    },
-    {
-      role: "Software Engineer",
-      company: "Startup Inc.",
-      period: "2019 - 2021",
-      description: "Full-stack development of customer-facing web applications using React, Node.js, and PostgreSQL.",
-      achievements: [
-        "Built scalable REST APIs serving 100k+ daily active users",
-        "Implemented real-time features using WebSockets",
-        "Reduced backend response time by 50%",
-      ],
-    },
-    {
-      role: "Junior Developer",
-      company: "Digital Agency",
-      period: "2018 - 2019",
-      description: "Frontend development and UI/UX implementation for client projects.",
-      achievements: [
-        "Developed responsive websites for 15+ clients",
-        "Improved code quality through implementing testing practices",
-        "Collaborated with design team to create pixel-perfect implementations",
-      ],
-    },
-  ];
+  const experienceData = getExperiencePageData();
+  const { hero, cta, experiences } = experienceData;
 
   return (
     <Layout
@@ -73,7 +41,7 @@ export default function Experience() {
               backgroundClip: "text",
             }}
           >
-            Experience
+            {hero.title}
           </h1>
           <p
             style={{
@@ -84,7 +52,7 @@ export default function Experience() {
               lineHeight: "1.6",
             }}
           >
-            My professional journey in software engineering
+            {hero.subtitle}
           </p>
         </motion.div>
 
@@ -247,7 +215,7 @@ export default function Experience() {
               color: "var(--ifm-font-color-base)",
             }}
           >
-            Interested in Working Together?
+            {cta.title}
           </h2>
           <p
             style={{
@@ -256,10 +224,10 @@ export default function Experience() {
               marginBottom: "24px",
             }}
           >
-            Let's discuss how I can contribute to your team
+            {cta.subtitle}
           </p>
           <a
-            href="/contact"
+            href={cta.buttonLink}
             style={{
               display: "inline-block",
               padding: "12px 32px",
@@ -273,7 +241,7 @@ export default function Experience() {
               boxShadow: "0 4px 14px rgba(59, 130, 246, 0.4)",
             }}
           >
-            Get in Touch
+            {cta.buttonText}
           </a>
         </motion.div>
       </main>

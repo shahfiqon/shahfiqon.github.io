@@ -58,3 +58,22 @@ typescript:
   permalink: /typescript
   description: TypeScript tag
 
+llama:
+  label: llama
+  permalink: /llama
+  description: llama.cpp and compatible open-source LLMs
+
+cuda:
+  label: CUDA
+  permalink: /cuda
+  description: NVIDIA CUDA GPU acceleration
+
+wsl:
+  label: WSL
+  permalink: /wsl
+  description: Windows Subsystem for Linux
+
+gpu:
+  label: GPU
+  permalink: /gpu
+  description: Graphics Processing Unit

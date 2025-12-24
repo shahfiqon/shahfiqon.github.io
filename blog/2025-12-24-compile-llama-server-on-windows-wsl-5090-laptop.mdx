@@ -1,0 +1,404 @@
+---
+title: Installing llama-server on Windows WSL with CUDA GPU (RTX 5090 Laptop) Support
+description: A complete guide to building and installing llama-server from llama.cpp on Windows WSL with NVIDIA GPU acceleration
+slug: install-llama-server-wsl-cuda
+authors: [jane]
+tags: [llama, cuda, wsl, gpu, ai, llm]
+hide_table_of_contents: false
+---
+
+# Installing llama-server on Windows WSL with CUDA GPU Support
+
+A comprehensive guide to building and installing llama-server with NVIDIA GPU acceleration on Windows WSL.
+
+<!--truncate-->
+
+## Introduction
+
+This guide walks you through the complete process of building llama-server from the llama.cpp project on Windows Subsystem for Linux (WSL) with CUDA GPU support. This manual compilation is necessary because pre-built llama-server binaries don't support the newer RTX 5090 architecture (compute capability 9.0) out of the box—the server needs to be rebuilt with the correct CUDA compute architecture flag to work properly. By the end of this tutorial, you'll have a fully functional LLM inference server running with GPU acceleration.
+
+## Prerequisites
+
+### System Requirements
+
+- Windows 10/11 with WSL2 installed
+- NVIDIA GPU (RTX series recommended)
+- At least 10GB free disk space
+- Ubuntu 22.04 or later on WSL
+
+### Check Your GPU
+
+First, verify that your NVIDIA GPU is accessible in WSL:
+
+```bash
+nvidia-smi
+```
+
+You should see output showing your GPU details. If not, you may need to install NVIDIA drivers for WSL.
+
+## Step 1: Install Build Dependencies
+
+Check if you have the required build tools:
+
+```bash
+gcc --version
+make --version
+git --version
+```
+
+If any are missing, install them:
+
+```bash
+sudo apt update
+sudo apt install build-essential git wget -y
+```
+
+## Step 2: Install CMake
+
+llama.cpp now uses CMake for building. Download and install CMake locally:
+
+```bash
+cd ~
+wget https://github.com/Kitware/CMake/releases/download/v3.28.1/cmake-3.28.1-linux-x86_64.tar.gz
+tar -xzf cmake-3.28.1-linux-x86_64.tar.gz
+rm cmake-3.28.1-linux-x86_64.tar.gz
+```
+
+## Step 3: Clone llama.cpp
+
+Clone the official llama.cpp repository:
+
+```bash
+cd ~
+git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
+```
+
+## Step 4: Install CUDA Toolkit
+
+Download the CUDA toolkit from NVIDIA:
+
+```bash
+cd ~
+wget https://developer.download.nvidia.com/compute/cuda/12.6.3/local_installers/cuda_12.6.3_560.35.05_linux.run
+```
+
+Make it executable and install:
+
+```bash
+chmod +x cuda_12.6.3_560.35.05_linux.run
+sh cuda_12.6.3_560.35.05_linux.run --silent --toolkit --toolkitpath=$HOME/cuda --no-opengl-libs --no-drm --override
+```
+
+:::tip
+Installing to `$HOME/cuda` avoids needing sudo permissions. The installation takes several minutes.
+:::
+
+## Step 5: Configure Environment Variables
+
+Add CUDA to your PATH:
+
+```bash
+echo 'export PATH="$HOME/cuda/bin:$PATH"' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH="$HOME/cuda/lib64:$LD_LIBRARY_PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Verify CUDA installation:
+
+```bash
+nvcc --version
+```
+
+You should see CUDA compiler version information.
+
+## Step 6: Build llama-server with CUDA Support
+
+Create a build directory and configure with CMake:
+
+```bash
+cd ~/llama.cpp
+mkdir -p build
+cd build
+~/cmake-3.28.1-linux-x86_64/bin/cmake .. -DLLAMA_CURL=OFF -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=90
+```
+
+:::info Compute Architecture
+- Use `-DCMAKE_CUDA_ARCHITECTURES=90` for RTX 5090/5080 (Blackwell)
+- Use `-DCMAKE_CUDA_ARCHITECTURES=89` for RTX 4090 (Ada Lovelace)
+- Use `-DCMAKE_CUDA_ARCHITECTURES=86` for RTX 3090 (Ampere)
+- Use `-DCMAKE_CUDA_ARCHITECTURES=75` for RTX 2080 Ti (Turing)
+:::
+
+Build llama-server:
+
+```bash
+~/cmake-3.28.1-linux-x86_64/bin/cmake --build . --target llama-server -j$(nproc)
+```
+
+This will take several minutes depending on your CPU.
+
+## Step 7: Install llama-server
+
+Create a bin directory and add a symbolic link:
+
+```bash
+mkdir -p ~/bin
+ln -sf ~/llama.cpp/build/bin/llama-server ~/bin/llama-server
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## Step 8: Verify Installation
+
+Check that llama-server is working with GPU support:
+
+```bash
+llama-server --version
+```
+
+You should see output indicating CUDA devices were found:
+
+```
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 5090 Laptop GPU, compute capability 12.0, VMM: yes
+version: 7531 (54132f1b1)
+built with GNU 11.4.0 for Linux x86_64
+```
+
+## Usage
+
+### Basic Server Start
+
+```bash
+llama-server -m /path/to/model.gguf
+```
+
+### With GPU Offloading (Recommended)
+
+```bash
+llama-server -m /path/to/model.gguf -ngl 99
+```
+
+- `-ngl 99`: Offloads 99 layers to GPU (adjust based on your model size and VRAM)
+
+### Full Example with Options
+
+```bash
+llama-server \
+  -m /path/to/model.gguf \
+  -ngl 99 \
+  --host 0.0.0.0 \
+  --port 8080 \
+  -c 4096 \
+  -t 8
+```
+
+Options explained:
+- `-m`: Path to your GGUF model file
+- `-ngl`: Number of layers to offload to GPU
+- `--host`: Network interface to bind (0.0.0.0 for all interfaces)
+- `--port`: Port number (default: 8080)
+- `-c`: Context size in tokens
+- `-t`: Number of CPU threads
+
+### API Endpoint
+
+Once running, the server provides an OpenAI-compatible API at:
+
+```
+http://localhost:8080/v1/chat/completions
+```
+
+Example curl request:
+
+```bash
+curl http://localhost:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+```
+
+## Getting Models
+
+Download GGUF format models from Hugging Face:
+
+1. Visit [Hugging Face](https://huggingface.co/models)
+2. Search for "GGUF" models
+3. Popular quantizations:
+   - `Q4_K_M`: Good balance of quality and speed
+   - `Q5_K_M`: Higher quality, slightly slower
+   - `Q8_0`: Near-original quality, larger size
+
+Popular model sources:
+- [TheBloke's models](https://huggingface.co/TheBloke)
+- [bartowski's models](https://huggingface.co/bartowski)
+
+Example download:
+
+```bash
+wget https://huggingface.co/TheBloke/Llama-2-7B-GGUF/resolve/main/llama-2-7b.Q4_K_M.gguf
+```
+
+## Performance Comparison
+
+| Configuration | Tokens/Second (Approximate) |
+|--------------|----------------------------|
+| CPU Only (16 cores) | 10-20 t/s |
+| RTX 3090 | 80-120 t/s |
+| RTX 4090 | 120-180 t/s |
+| RTX 5090 | 180-250 t/s |
+
+:::tip
+Actual performance varies based on model size, quantization, context length, and batch size.
+:::
+
+## Troubleshooting
+
+### CUDA Device Not Found
+
+If you see "CUDA device not found" or similar errors:
+
+1. Check nvidia-smi shows your GPU
+2. Verify CUDA paths are in your environment
+3. Make sure you built with `-DGGML_CUDA=ON`
+
+### Out of Memory Errors
+
+If you get VRAM errors:
+
+1. Reduce the number of GPU layers: `-ngl 30` (instead of 99)
+2. Use a smaller model or lower quantization
+3. Reduce context size: `-c 2048`
+
+### Build Errors
+
+If compilation fails:
+
+1. Ensure all dependencies are installed
+2. Check CUDA toolkit is properly installed
+3. Verify compute architecture matches your GPU
+4. Try cleaning and rebuilding:
+   ```bash
+   cd ~/llama.cpp/build
+   rm -rf *
+   ~/cmake-3.28.1-linux-x86_64/bin/cmake .. -DLLAMA_CURL=OFF -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=90
+   ~/cmake-3.28.1-linux-x86_64/bin/cmake --build . --target llama-server -j$(nproc)
+   ```
+
+### Permission Errors
+
+If you encounter permission issues:
+
+1. Ensure the installer is executable: `chmod +x cuda_*.run`
+2. Use local installation path (as shown in this guide)
+3. Check file ownership: `ls -la ~/cuda`
+
+## Cleanup (Optional)
+
+Remove temporary files to free up space:
+
+```bash
+rm ~/cuda_12.6.3_560.35.05_linux.run
+rm ~/cmake-3.28.1-linux-x86_64.tar.gz
+```
+
+The llama.cpp source can be kept for future updates:
+
+```bash
+cd ~/llama.cpp
+git pull
+cd build
+~/cmake-3.28.1-linux-x86_64/bin/cmake --build . --target llama-server -j$(nproc)
+```
+
+## Advanced Configuration
+
+### Running as a Service
+
+Create a systemd service file (requires sudo):
+
+```bash
+sudo nano /etc/systemd/system/llama-server.service
+```
+
+Add the following content:
+
+```ini
+[Unit]
+Description=Llama Server
+After=network.target
+
+[Service]
+Type=simple
+User=your-username
+Environment="PATH=/home/your-username/cuda/bin:/home/your-username/bin:/usr/bin"
+Environment="LD_LIBRARY_PATH=/home/your-username/cuda/lib64"
+ExecStart=/home/your-username/bin/llama-server -m /path/to/model.gguf -ngl 99 --host 0.0.0.0 --port 8080
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start the service:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable llama-server
+sudo systemctl start llama-server
+```
+
+### Multiple GPU Support
+
+If you have multiple GPUs, you can specify which to use:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 llama-server -m model.gguf -ngl 99
+```
+
+Or use multiple GPUs:
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 llama-server -m model.gguf -ngl 99 --split-mode layer
+```
+
+### Memory Management
+
+Monitor GPU memory usage:
+
+```bash
+watch -n 1 nvidia-smi
+```
+
+Adjust layer offloading based on available VRAM:
+- 8GB VRAM: `-ngl 20-30`
+- 12GB VRAM: `-ngl 35-45`
+- 16GB VRAM: `-ngl 50-65`
+- 24GB VRAM: `-ngl 80-99`
+
+## Conclusion
+
+You now have a fully functional llama-server running with CUDA GPU acceleration on Windows WSL. This setup provides:
+
+- ✅ Native GPU acceleration for fast inference
+- ✅ OpenAI-compatible API for easy integration
+- ✅ Support for various GGUF models
+- ✅ Flexible configuration options
+
+Enjoy running large language models locally with the power of your NVIDIA GPU!
+
+## Resources
+
+- [llama.cpp GitHub Repository](https://github.com/ggerganov/llama.cpp)
+- [llama.cpp Documentation](https://github.com/ggerganov/llama.cpp/tree/master/docs)
+- [Hugging Face Models](https://huggingface.co/models)
+- [NVIDIA CUDA Documentation](https://docs.nvidia.com/cuda/)
+- [WSL Documentation](https://learn.microsoft.com/en-us/windows/wsl/)
+
+## License
+
+llama.cpp is licensed under the MIT License. Refer to the [official repository](https://github.com/ggerganov/llama.cpp) for more information.
+
