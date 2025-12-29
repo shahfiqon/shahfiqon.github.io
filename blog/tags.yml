@@ -77,3 +77,13 @@ gpu:
   label: GPU
   permalink: /gpu
   description: Graphics Processing Unit
+
+programming:
+  label: Programming
+  permalink: /programming
+  description: Programming language
+
+best-practices:
+  label: Best Practices
+  permalink: /best-practices
+  description: Coding and software development best practices
