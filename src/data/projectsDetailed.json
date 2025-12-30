@@ -16,7 +16,7 @@
       "techStack": ["Next.js 14", "TypeScript", "Tailwind CSS", "shadcn/ui", "FastAPI", "Python", "SQLAlchemy", "Alembic", "LangChain", "Claude 3.5 Sonnet", "OpenAI GPT-4o", "PostgreSQL", "Docker", "Pydantic"],
       "domains": ["Full-Stack", "AI/LLM", "Automation", "Backend", "Frontend"],
       "media": {
-        "thumbnail": "/img/job-assistant-thumb.png",
+        "thumbnail": "/img/job-assistant-thumb-enhanced.png",
         "demo": "/img/job-assistant.gif"
       },
       "links": {
@@ -44,7 +44,7 @@
       "techStack": ["LangGraph", "LangChain", "Python", "Pydantic", "FastAPI", "Next.js 14", "TypeScript", "Tailwind CSS", "Axios", "OpenAI GPT-4", "Claude 3.5 Sonnet", "llama.cpp"],
       "domains": ["AI/LLM", "Multi-Agent Systems", "Full-Stack", "Backend", "Frontend", "Workflow Orchestration"],
       "media": {
-        "thumbnail": "/img/agentic-hirring-workflow.png",
+        "thumbnail": "/img/agentic-hiring-workflow-enhanced.png",
         "demo": "/img/agentic-hiring-workflow.gif"
       },
       "links": {
